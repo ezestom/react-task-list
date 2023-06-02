@@ -8,17 +8,20 @@ function TaskForm() {
 
 	const hundleSubmit = (e) => {
 		e.preventDefault();
-		createTask({
-			title,
-			description,
-		});
-		setTitle("");
-		setDescription("");
+		if (title !== "" && description !== "") {
+			createTask({ title, description });
+			setTitle("");
+			setDescription("");
+		} else {
+			alert("🚫 No puedes dejar campos vacios");
+		}
 	};
 
 	return (
 		<div className="max-w-md mx-auto rounded-md">
-			<form onSubmit={hundleSubmit} className="bg-gray-300 m-2 p-10 mb-4 rounded-md">
+			<form
+				onSubmit={hundleSubmit}
+				className="bg-gray-300 m-2 p-10 mb-4 rounded-md">
 				<h1 className="text-2xl font-bold mb-3">Crea tu tarea</h1>
 				<input
 					placeholder="Ecribe tu tarea"
@@ -34,7 +37,9 @@ function TaskForm() {
 					}}
 					value={description}
 					className=" bg-gray-100 p-3 rounded-md  w-full mb-2"></textarea>
-				<button className="bg-indigo-500 px-4 py-2 rounded-md hover:bg-indigo-400 hover:text-white">Guardar</button>
+				<button className="bg-indigo-500 px-4 py-2 rounded-md hover:bg-indigo-400 hover:text-white">
+					Guardar
+				</button>
 			</form>
 		</div>
 	);
